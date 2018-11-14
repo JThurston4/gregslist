@@ -1,28 +1,28 @@
-import Auto from "../../models/auto.js";
+import Job from "../../models/job.js";
 
 // @ts-ignore
 let _api = axios.create({
-  baseURL: "https://bcw-gregslist.herokuapp.com/api/cars/"
+  baseURL: "https://bcw-gregslist.herokuapp.com/api/jobs"
 })
 
-/**@type {Array<Auto>} */
-let _autos = []
+/**@type {Array<Job>} */
+let _jobs = []
 
 function handleError(err) {
   throw new Error(err)
 }
 
-export default class AutosService {
+export default class JobsService {
   //HTTP
-  destroyAuto(id, showAutos) {
+  destroyJob(id, showJobs) {
     _api.delete(id)
       .then(res => {
-        this.getAutos(showAutos)
+        this.getJobs(showJobs)
       })
       .catch(handleError)
   }
   //HTTP
-  addAuto(formData, fnToRunOnSuccess) {
+  addJob(formData, fnToRunOnSuccess) {
     // send formData to api (SERVER)
     // wait for server to respond
     // when the server responds 
@@ -37,35 +37,35 @@ export default class AutosService {
     _api.post('', formData)
       .then(res => {
         //tell me via a callback 
-        this.getAutos(fnToRunOnSuccess)
+        this.getJobs(fnToRunOnSuccess)
       }) // successful
       .catch(handleError)
 
   }
   //HTTP
-  getAutos(fnToRunOnSuccess) {
+  getJobs(fnToRunOnSuccess) {
     if (typeof fnToRunOnSuccess != 'function') {
       throw new Error("You must supply a success function")
     }
     _api.get('')
       .then(res => {
-        // _autos =[]
+        // _jobs =[]
         // for (let i = 0; i < res.data.data.length; i++) {
         //   const item = res.data.data[i];
-        //   _autos.push(item)
+        //   _jobs.push(item)
         // }
         // ^^^^ SAME AS ABOVE
-        _autos = res.data.data.map(item => new Auto(item))
+        _jobs = res.data.data.map(item => new Job(item))
         fnToRunOnSuccess()
-        console.log(_autos)
+        console.log(_jobs)
       })
       .catch(handleError)
   }
 
   // sync call
-  get autos() {
-    console.log("someone needs the autos")
-    return _autos
+  get jobs() {
+    console.log("someone needs the jobs")
+    return _jobs
   }
 
 }
