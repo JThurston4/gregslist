@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GregsList</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- MOUNTING POINTS -->
+  <div id="app">
+    <div class="categories">
+      <button class="btn btn-primary" onclick="app.controllers.autosController.showAutos()">Autos</button>
+      <button class="btn btn-primary">Real Estate</button>
+      <button class="btn btn-primary">Jobs</button>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row" id="main-content">
+        Choose a category to start buying stuff in
+      </div>
+    </div>
+
+    <form onsubmit="app.controllers.autosController.addAuto(event)">
+      <div class="form-group">
+        <label for="make">Make</label>
+        <input type="text" name="make" />
+      </div>
+      <div class="form-group">
+        <label for="model">Model:</label>
+        <input type="text" name="model" />
+      </div>
+      <div class="form-group">
+        <label for="year">Year:</label>
+        <input type="number" name="year" />
+      </div>
+      <div class="form-group">
+        <label for="PRICE">Price:</label>
+        <input type="number" name="PRICE" />
+      </div>
+      <div class="form-group">
+        <label for="imgUrl">Image:</label>
+        <input type="url" name="imgUrl" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea type="text" name="description"></textarea>
+      </div>
+      <button type="submit">Add Auto</button>
+    </form>
+
+
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="app/main.js" type="module"></script>
+
+
+</body>
+
+</html>
